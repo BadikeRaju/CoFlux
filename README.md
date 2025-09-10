@@ -42,6 +42,15 @@ The application follows a typical client-server architecture with several key co
 *   **WebSockets:** Provide a persistent, bi-directional communication channel between clients and the server for real-time collaborative editing and presence updates.
 *   **CRDTs (Yjs):** Ensure that concurrent edits from multiple users are merged without conflicts, maintaining data consistency.
 
+## Screenshots
+
+Here are some screenshots demonstrating the key features of the collaborative editor:
+
+### Real-time Collaborative Editing
+A view of multiple users editing a document simultaneously.
+![Real-time Editor Screenshot](./Coflux.png)
+![Real-time Editor Screenshot](./Coflux p1.png)
+
 ## Setup and Installation
 
 ### Prerequisites
@@ -106,11 +115,6 @@ The application follows a typical client-server architecture with several key co
 4.  **Offline Editing:** Disconnect from the internet and continue editing. Your changes will sync automatically when you reconnect.
 5.  **Version History:** Access the document's version history to view past snapshots and rollback if needed.
 
-## Screenshots
 
-Here are some screenshots demonstrating the key features of the collaborative editor:
 
-### Real-time Collaborative Editing
-A view of multiple users editing a document simultaneously.
-![Real-time Editor Screenshot](
-)
+
