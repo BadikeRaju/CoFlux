@@ -49,7 +49,7 @@ Here are some screenshots demonstrating the key features of the collaborative ed
 ### Real-time Collaborative Editing
 A view of multiple users editing a document simultaneously.
 ![Real-time Editor Screenshot](./Coflux.png)
-![Real-time Editor Screenshot](./Coflux p1.png)
+![Real-time Editor Screenshot](./Cofluxp1.png)
 
 ## Setup and Installation
 
