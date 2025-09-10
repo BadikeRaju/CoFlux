@@ -1,73 +1,116 @@
-# Welcome to your Lovable project
+# Real-time Collaborative Editor
 
-## Project info
+A full-stack, real-time collaborative editor with offline capabilities, built using React, Node.js, Express, and MongoDB. This editor allows multiple users to concurrently edit documents, features robust offline support, and includes a version control system for document management.
 
-**URL**: https://lovable.dev/projects/98ab2cf1-cf8e-4bd0-ba90-0acb0ede736c
+## Features
 
-## How can I edit this code?
+*   **Real-time Collaboration:** Powered by CRDTs (Yjs) and WebSockets for conflict-free, multi-user concurrent editing.
+*   **Presence System:** See who else is currently viewing or editing the document.
+*   **Offline-First Architecture:** Edit documents seamlessly even without an internet connection. Changes are synchronized with the server upon reconnection using IndexedDB for local persistence.
+*   **Rich Text Editing:** Integrated with Lexical for a powerful and customizable rich text editing experience.
+*   **User Authentication:** Secure user authentication using JSON Web Tokens (JWT).
+*   **Version Control:**
+    *   Document snapshots.
+    *   Detailed change tracking.
+    *   Ability to rollback to previous versions.
 
-There are several ways of editing your application.
+## Technologies Used
 
-**Use Lovable**
+**Frontend:**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/98ab2cf1-cf8e-4bd0-ba90-0acb0ede736c) and start prompting.
+*   **React:** A JavaScript library for building user interfaces.
+*   **Lexical:** An extensible rich text editor framework.
+*   **Yjs:** A high-performance CRDT implementation for real-time collaboration.
+*   **IndexedDB:** For client-side data storage and offline capabilities.
+*   **WebSockets (via `websocket-ts` or similar):** For real-time communication.
 
-Changes made via Lovable will be committed automatically to this repo.
+**Backend:**
 
-**Use your preferred IDE**
+*   **Node.js:** A JavaScript runtime for server-side development.
+*   **Express:** A fast, unopinionated, minimalist web framework for Node.js.
+*   **MongoDB:** A NoSQL database for storing document data and user information.
+*   **WebSockets (via `ws` or similar):** For real-time communication.
+*   **Y-websocket:** WebSocket signaling for Yjs.
+*   **JSON Web Tokens (JWT):** For secure user authentication.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Architecture
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+The application follows a typical client-server architecture with several key components:
 
-Follow these steps:
+*   **Client-side (React):** Handles UI rendering, user interactions, rich text editing with Lexical, and offline data persistence with IndexedDB. It communicates with the server via WebSockets for real-time updates and REST APIs for authentication and initial data loading.
+*   **Server-side (Node.js/Express):** Manages user authentication, document storage in MongoDB, and real-time synchronization via WebSockets using Yjs. It also handles version control logic.
+*   **WebSockets:** Provide a persistent, bi-directional communication channel between clients and the server for real-time collaborative editing and presence updates.
+*   **CRDTs (Yjs):** Ensure that concurrent edits from multiple users are merged without conflicts, maintaining data consistency.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Setup and Installation
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Prerequisites
 
-# Step 3: Install the necessary dependencies.
-npm i
+*   Node.js (LTS version recommended)
+*   MongoDB (running locally or a cloud instance)
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+### Backend Setup
 
-**Edit a file directly in GitHub**
+1.  **Clone the repository:**
+    ```bash
+    git clone <repository-url>
+    cd <repository-name>/server
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Configure environment variables:**
+    Create a `.env` file in the `server` directory and add the following:
+    ```
+    PORT=5000
+    MONGO_URI=mongodb://localhost:27017/collaborative_editor
+    JWT_SECRET=your_jwt_secret_key
+    ```
+    *Replace `your_jwt_secret_key` with a strong, random secret.*
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+4.  **Run the backend:**
+    ```bash
+    npm start
+    ```
+    The server will run on `http://localhost:5000` (or your specified PORT).
 
-**Use GitHub Codespaces**
+### Frontend Setup
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1.  **Navigate to the client directory:**
+    ```bash
+    cd ../client
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Configure environment variables:**
+    Create a `.env` file in the `client` directory and add the following:
+    ```
+    REACT_APP_API_URL=http://localhost:5000/api
+    REACT_APP_WS_URL=ws://localhost:5000
+    ```
 
-## What technologies are used for this project?
+4.  **Run the frontend:**
+    ```bash
+    npm start
+    ```
+    The client application will open in your browser, typically at `http://localhost:3000`.
 
-This project is built with:
+## Usage
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+1.  **Register/Login:** Create an account or log in to access the editor.
+2.  **Create/Select Document:** Start a new document or open an existing one.
+3.  **Collaborate:** Share the document URL with others to collaborate in real-time.
+4.  **Offline Editing:** Disconnect from the internet and continue editing. Your changes will sync automatically when you reconnect.
+5.  **Version History:** Access the document's version history to view past snapshots and rollback if needed.
 
-## How can I deploy this project?
+## Screenshots
 
-Simply open [Lovable](https://lovable.dev/projects/98ab2cf1-cf8e-4bd0-ba90-0acb0ede736c) and click on Share -> Publish.
+Here are some screenshots demonstrating the key features of the collaborative editor:
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Real-time Collaborative Editing
+A view of multiple users editing a document simultaneously.
+![Real-time Editor Screenshot](
+)
